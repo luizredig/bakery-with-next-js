@@ -1,6 +1,8 @@
 import { Product } from "@prisma/client";
 import ProductItem from "./productItem";
 
+import "@/app/css/scrollbar.css";
+
 interface SectionProps {
   title: string;
   products: Product[];
