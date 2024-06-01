@@ -1,7 +1,8 @@
-import { MenuIcon } from "lucide-react";
+import { MenuIcon, ShoppingCartIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "./ui/sheet";
+import Cart from "./cart";
 
 const Header = () => {
   return (
@@ -19,7 +20,21 @@ const Header = () => {
           <SheetClose asChild></SheetClose>
         </Sheet>
 
-        <Button variant={"default"}>Login</Button>
+        <div className="flex flex-row gap-2">
+          <Button variant={"default"}>Login</Button>
+
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button size={"icon"} variant={"ghost"}>
+                <ShoppingCartIcon />
+              </Button>
+            </SheetTrigger>
+
+            <SheetContent>
+              <Cart />
+            </SheetContent>
+          </Sheet>
+        </div>
       </Card>
     </>
   );
