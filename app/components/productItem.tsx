@@ -4,8 +4,6 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader } from "./ui/card";
 import { Button } from "./ui/button";
 
-import "@/app/css/scrollbar.css";
-
 interface ProductItemProps {
   product: Product;
 }

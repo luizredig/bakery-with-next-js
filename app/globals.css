@@ -66,15 +66,37 @@
   }
 }
 
+@layer utilities {
+  .scrollbar:hover::-webkit-scrollbar-thumb {
+    @apply bg-primary/25;
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    @apply mt-4 h-2;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-transparent;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/40;
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground scrollbar;
   }
   body,
   html {
-    @apply min-w-80 h-full;
+    @apply h-full min-w-80;
   }
 }
