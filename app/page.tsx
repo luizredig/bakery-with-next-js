@@ -7,15 +7,23 @@ export default async function Home() {
   const cakes = await prismaClient.product.findMany({
     where: {
       category: {
-        slug: "bolo",
+        slug: "cake",
+      },
+    },
+  });
+
+  const pies = await prismaClient.product.findMany({
+    where: {
+      category: {
+        slug: "pie",
       },
     },
   });
 
   return (
     <main>
-      <Section title="Bolos inteiros" products={cakes} />
-      <Section title="Tortas" products={cakes} />
+      <Section title="Cakes" products={cakes} />
+      <Section title="Pies" products={pies} />
     </main>
   );
 }
