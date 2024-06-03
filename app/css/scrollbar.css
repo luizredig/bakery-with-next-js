@@ -3,7 +3,7 @@
 }
 
 .scrollbar::-webkit-scrollbar {
-  @apply mt-4 h-2;
+  @apply mt-4 h-2 w-2;
 }
 
 .scrollbar::-webkit-scrollbar-track {
