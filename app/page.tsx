@@ -22,8 +22,8 @@ export default async function Home() {
 
   return (
     <main>
-      <Section title="Cakes" products={cakes} />
-      <Section title="Pies" products={pies} />
+      {cakes.length > 0 && <Section title="Cakes" products={cakes} />}
+      {pies.length > 0 && <Section title="Pies" products={pies} />}
     </main>
   );
 }
