@@ -2,7 +2,6 @@ import { Product } from "@prisma/client";
 
 import Image from "next/image";
 import { Card, CardContent, CardHeader } from "./ui/card";
-import { Button } from "./ui/button";
 
 interface ProductItemProps {
   product: Product;
@@ -24,8 +23,8 @@ const ProductItem = ({ product }: ProductItemProps) => {
           />
         </CardHeader>
 
-        <CardContent className="flex flex-col justify-center gap-2 p-4 text-sm">
-          <div className="flex flex-col gap-1">
+        <CardContent className="flex h-1/2 flex-col justify-center text-sm">
+          <div className="flex flex-col p-0">
             <p className="overflow-hidden text-ellipsis text-nowrap font-semibold lg:text-2xl">
               {product.name}
             </p>
@@ -37,8 +36,6 @@ const ProductItem = ({ product }: ProductItemProps) => {
               }).format(Number(product.basePrice))}
             </p>
           </div>
-
-          <Button>Ver mais...</Button>
         </CardContent>
       </Card>
     </>
