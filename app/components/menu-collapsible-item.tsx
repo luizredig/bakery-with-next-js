@@ -33,13 +33,25 @@ const MenuCollapsibleItem = ({ slug, icon }: MenuCollapsibleItemProps) => {
           </AccordionTrigger>
 
           <AccordionContent className="flex flex-col gap-3">
-            <MenuButton href={`/create/${slug}`} label="Create" icon="create" />
+            <MenuButton
+              href={`/form/create/${slug}`}
+              label="Create"
+              icon="create"
+            />
 
-            <MenuButton href={`/find/${slug}`} label="Find" icon="find" />
+            <MenuButton href={`/form/find/${slug}`} label="Find" icon="find" />
 
-            <MenuButton href={`/update/${slug}`} label="Update" icon="update" />
+            <MenuButton
+              href={`/form/update/${slug}`}
+              label="Update"
+              icon="update"
+            />
 
-            <MenuButton href={`/delete/${slug}`} label="Delete" icon="delete" />
+            <MenuButton
+              href={`/form/delete/${slug}`}
+              label="Delete"
+              icon="delete"
+            />
           </AccordionContent>
         </AccordionItem>
       </Accordion>
