@@ -1,5 +1,5 @@
 import { Product } from "@prisma/client";
-import ProductItem from "./productItem";
+import ProductItem from "./product-item";
 
 import "@/app/css/scrollbar.css";
 

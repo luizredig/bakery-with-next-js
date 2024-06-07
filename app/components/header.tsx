@@ -9,6 +9,8 @@ import {
   SheetTrigger,
 } from "./ui/sheet";
 import Cart from "./cart";
+import Menu from "./menu";
+import { Separator } from "./ui/separator";
 
 const Header = () => {
   return (
@@ -21,9 +23,13 @@ const Header = () => {
             </Button>
           </SheetTrigger>
 
-          <SheetContent side={"left"}></SheetContent>
+          <SheetContent side={"left"}>
+            <SheetHeader className="text-lg font-semibold">Menu</SheetHeader>
 
-          <SheetClose asChild></SheetClose>
+            <Separator orientation="horizontal" className="my-3" />
+
+            <Menu />
+          </SheetContent>
         </Sheet>
 
         <div className="flex flex-row gap-2">
