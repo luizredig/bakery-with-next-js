@@ -58,20 +58,15 @@ const formSchema = z.object({
   categoryId: z.string({
     required_error: "Category is required.",
   }),
-  discountPercentage: z.preprocess(
-    (value) => {
+  discountPercentage: z
+    .preprocess((value) => {
       if (typeof value === "string") {
         value = value.replace(",", ".");
       }
       const parsed = parseFloat(value as string);
       return isNaN(parsed) ? undefined : parsed;
-    },
-    z
-      .number({ required_error: "Enter an integer discount percentage." })
-      .positive()
-      .int({ message: "Base price must be an integer." })
-      .optional(),
-  ),
+    }, z.number().nonnegative().optional())
+    .optional(),
   hasDiscountPercentage: z.boolean().optional(),
   name: z.string({ required_error: "Name is required." }),
 });
