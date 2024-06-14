@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 import {
   Card,
@@ -28,6 +29,7 @@ import {
 } from "@/app/components/ui/select";
 import { Checkbox } from "@/app/components/ui/checkbox";
 import { Button } from "@/app/components/ui/button";
+import Loading from "@/app/loading";
 
 import { AppDispatch, RootState } from "@/app/redux/store";
 import { fetchCategories } from "@/app/redux/categorySlice";
@@ -35,7 +37,9 @@ import { fetchCategories } from "@/app/redux/categorySlice";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Category } from "@prisma/client";
-import Loading from "@/app/loading";
+import { ToastAction } from "@/app/components/ui/toast";
+import { useToast } from "@/app/components/ui/use-toast";
+import { format } from "date-fns";
 
 const formSchema = z.object({
   basePrice: z.preprocess(
@@ -73,6 +77,10 @@ const formSchema = z.object({
 });
 
 const Page = () => {
+  const { toast } = useToast();
+
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -104,14 +112,21 @@ const Page = () => {
       const result = await response.json();
 
       if (result.status === 200) {
-        form.setValue("name", "");
-        form.setValue("categoryId", "");
+        toast({
+          title: "Product has been created",
+          description: format(new Date(), "dd/MM/yy hh:mm"),
+          action: <ToastAction altText="Undo">Undo</ToastAction>,
+        });
+        router.push("/");
       }
     } catch (error) {
-      alert("Error");
-      console.error("Error:", error);
+      toast({
+        title: JSON.stringify(error),
+        description: format(new Date(), "dd/MM/yy hh:mm"),
+      });
     } finally {
       setIsSubmitLoading(false);
+      router.refresh();
     }
   };
 
