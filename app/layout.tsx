@@ -6,6 +6,7 @@ import "./globals.css";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import ReduxProvider from "./components/provider";
+import { Toaster } from "@/app/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,8 @@ export default function RootLayout({
           <div className="flex-1">{children}</div>
 
           <Footer />
+
+          <Toaster />
         </body>
       </html>
     </ReduxProvider>
