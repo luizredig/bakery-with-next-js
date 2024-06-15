@@ -1,13 +1,7 @@
 import { MenuIcon, ShoppingCartIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetHeader,
-  SheetTrigger,
-} from "./ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
 import Cart from "./cart";
 import Menu from "./menu";
 import { Separator } from "./ui/separator";
@@ -33,7 +27,7 @@ const Header = () => {
         </Sheet>
 
         <div className="flex flex-row gap-2">
-          <Button variant={"default"}>Login</Button>
+          {/* <Button variant={"default"}>Login</Button> */}
 
           <Sheet>
             <SheetTrigger asChild>
