@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 import { addProductToCart } from "@/app/redux/cartSlice";
 import { ICartItem } from "./cart-item";
 
-import { ToastAction } from "@/app/components/ui/toast";
 import { useToast } from "@/app/components/ui/use-toast";
 import { format } from "date-fns";
 
