@@ -7,7 +7,7 @@ export default async function Home() {
   const cakes = await prismaClient.product.findMany({
     where: {
       category: {
-        slug: "cake",
+        slug: "cakes",
       },
     },
   });
@@ -15,7 +15,23 @@ export default async function Home() {
   const pies = await prismaClient.product.findMany({
     where: {
       category: {
-        slug: "pie",
+        slug: "pies",
+      },
+    },
+  });
+
+  const cupcakes = await prismaClient.product.findMany({
+    where: {
+      category: {
+        slug: "cupcakes",
+      },
+    },
+  });
+
+  const sweets = await prismaClient.product.findMany({
+    where: {
+      category: {
+        slug: "sweets",
       },
     },
   });
@@ -23,7 +39,12 @@ export default async function Home() {
   return (
     <main>
       {cakes.length > 0 && <Section title="Cakes" products={cakes} />}
+
       {pies.length > 0 && <Section title="Pies" products={pies} />}
+
+      {cupcakes.length > 0 && <Section title="Cupcakes" products={cupcakes} />}
+
+      {sweets.length > 0 && <Section title="Sweets" products={sweets} />}
     </main>
   );
 }
