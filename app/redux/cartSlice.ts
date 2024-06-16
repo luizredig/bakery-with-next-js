@@ -2,7 +2,7 @@
 
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ICart } from "../components/cart";
-import { ICartItem } from "../components/cartItem";
+import { ICartItem } from "../components/cart-item";
 
 const initialState: ICart = {
   items: [],

@@ -1,38 +1,73 @@
-import { Product } from "@prisma/client";
+"use client";
 
 import Image from "next/image";
-import { Card, CardContent, CardHeader } from "./ui/card";
+import { Card, CardContent } from "./ui/card";
+import { Button } from "./ui/button";
+import { PlusIcon } from "lucide-react";
+
+import { useDispatch } from "react-redux";
+import { addProductToCart } from "@/app/redux/cartSlice";
+import { ICartItem } from "./cart-item";
+
+import { ToastAction } from "@/app/components/ui/toast";
+import { useToast } from "@/app/components/ui/use-toast";
+import { format } from "date-fns";
 
 interface ProductItemProps {
-  product: Product;
+  product: ICartItem;
 }
 
 const ProductItem = ({ product }: ProductItemProps) => {
+  const dispatch = useDispatch();
+  const { toast } = useToast();
+
+  const handleAddToCart = () => {
+    try {
+      dispatch(addProductToCart({ ...product, quantity: 1 }));
+      toast({
+        title: `${product.name} has been added to your cart.`,
+        description: format(new Date(), "dd/MM/yy hh:mm"),
+      });
+    } catch (error) {
+      toast({
+        title: JSON.stringify(error),
+        description: format(new Date(), "dd/MM/yy hh:mm"),
+      });
+    }
+  };
+
   return (
     <>
-      <Card className="min-h-[250px] min-w-[170px] overflow-hidden xs:max-h-[250px] xs:max-w-[170px] lg:max-h-[355px] lg:min-h-[355px] lg:min-w-[255px] lg:max-w-[255px]">
-        <CardHeader className="h-1/2 w-full p-0 lg:h-1/2">
+      <Card className="w-48 min-w-48 max-w-48 select-none overflow-hidden rounded-2xl shadow-md">
+        <CardContent className="relative p-0">
+          <Button
+            variant={"default"}
+            size={"icon"}
+            className="absolute bottom-3 right-3 flex cursor-pointer items-center justify-center rounded-full"
+            onClick={handleAddToCart}
+          >
+            <div className="flex flex-row">
+              <PlusIcon />
+            </div>
+          </Button>
+
           <Image
-            src={"/cake.png"}
+            src={product.imageUrls[0]}
             alt={product.name}
             width={0}
             height={0}
             sizes="100vw"
             priority
-            className="h-full w-full"
+            className="pointer-events-none h-full w-full object-contain"
           />
-        </CardHeader>
 
-        <CardContent className="flex h-1/2 flex-col justify-center text-sm">
-          <div className="flex flex-col p-0">
-            <p className="overflow-hidden text-ellipsis text-nowrap font-semibold lg:text-2xl">
-              {product.name}
-            </p>
+          <div className="flex flex-col gap-1 px-3 py-5">
+            <p className="truncate font-semibold">{product.name}</p>
 
-            <p className="text-sm font-light lg:text-2xl">
-              {Intl.NumberFormat("pt-BR", {
+            <p className="text-lg font-bold">
+              {Intl.NumberFormat("en-US", {
                 style: "currency",
-                currency: "BRL",
+                currency: "USD",
               }).format(Number(product.basePrice))}
             </p>
           </div>
