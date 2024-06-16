@@ -5,7 +5,7 @@ import {
   decrementProductQuantity,
   removeProductFromCart,
 } from "@/app/redux/cartSlice";
-import { Card, CardContent, CardHeader } from "./ui/card";
+import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { MinusIcon, PlusIcon, TrashIcon } from "lucide-react";
 import { Product } from "@prisma/client";

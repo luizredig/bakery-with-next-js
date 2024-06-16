@@ -2,7 +2,7 @@
 
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import CartProduct, { ICartItem } from "./cartItem";
+import CartProduct, { ICartItem } from "./cart-item";
 import { Separator } from "./ui/separator";
 
 import "@/app/css/scrollbar.css";
