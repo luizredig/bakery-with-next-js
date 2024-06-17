@@ -82,12 +82,35 @@ const ProductItem = ({ product }: ProductItemProps) => {
           <div className="flex flex-col gap-1 px-3 py-5">
             <p className="truncate font-semibold">{product.name}</p>
 
-            <p className="text-lg font-bold">
-              {Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: "USD",
-              }).format(Number(product.basePrice))}
-            </p>
+            {product.discountPercentage > 0 ? (
+              <div className="flex flex-row items-center gap-1">
+                <p className="truncate text-lg font-bold">
+                  {Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  }).format(
+                    Number(
+                      product.basePrice *
+                        (1 - product.discountPercentage / 100),
+                    ),
+                  )}
+                </p>
+
+                <p className="truncate text-sm text-muted-foreground line-through">
+                  {Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  }).format(Number(product.basePrice))}
+                </p>
+              </div>
+            ) : (
+              <p className="truncate text-lg font-bold">
+                {Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                }).format(Number(product.basePrice))}
+              </p>
+            )}
           </div>
         </CardContent>
       </Card>
