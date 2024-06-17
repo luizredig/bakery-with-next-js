@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
-import { PlusIcon } from "lucide-react";
+import { ArrowDown, PercentIcon, PlusIcon } from "lucide-react";
 
 import { useDispatch } from "react-redux";
 import {
@@ -15,6 +15,7 @@ import { ICartItem } from "./cart-item";
 
 import { useToast } from "@/app/components/ui/use-toast";
 import { format } from "date-fns";
+import { Badge } from "./ui/badge";
 
 interface ProductItemProps {
   product: ICartItem;
@@ -45,6 +46,18 @@ const ProductItem = ({ product }: ProductItemProps) => {
     <>
       <Card className="w-48 min-w-48 max-w-48 select-none overflow-hidden rounded-2xl shadow-md">
         <CardContent className="relative p-0">
+          {product.discountPercentage > 0 && (
+            <Badge className="absolute left-2 top-2 flex flex-row gap-1">
+              <ArrowDown size={16} />
+
+              <div className="flex flex-row">
+                <p>{product.discountPercentage}</p>
+
+                <PercentIcon size={16} />
+              </div>
+            </Badge>
+          )}
+
           <Button
             variant={"default"}
             size={"icon"}
