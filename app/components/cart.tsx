@@ -9,19 +9,37 @@ import "@/app/css/scrollbar.css";
 
 export interface ICart {
   items: ICartItem[];
+  subtotalPrice: number;
+  totalPrice: number;
 }
 
 const Cart = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
+  const subtotalPrice = useSelector(
+    (state: RootState) => state.cart.subtotalPrice,
+  );
+  const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
 
   return (
     <>
       {cartItems.length > 0 ? (
         <div className="flex flex-col gap-4 overflow-y-scroll [&::-webkit-scrollbar]:hidden">
           <div className="flex flex-col gap-2">
-            <p className="text-sm font-light">Subtotal:</p>
+            <p className="text-sm font-light">
+              Subtotal:{" "}
+              {Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "USD",
+              }).format(Number(subtotalPrice))}
+            </p>
 
-            <p className="text-lg font-semibold">Total:</p>
+            <p className="text-lg font-semibold">
+              Total:{" "}
+              {Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "USD",
+              }).format(Number(totalPrice))}
+            </p>
           </div>
 
           <div className="flex items-center justify-center">

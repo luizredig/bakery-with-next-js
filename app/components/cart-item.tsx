@@ -3,6 +3,8 @@ import {
   incrementProductQuantity,
   decrementProductQuantity,
   removeProductFromCart,
+  calculateSubtotalPrice,
+  calculateTotalPrice,
 } from "@/app/redux/cartSlice";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
@@ -21,16 +23,24 @@ interface CartItemProps {
 const CartProduct = ({ product }: CartItemProps) => {
   const dispatch = useDispatch();
 
+  const recalculateTotals = () => {
+    dispatch(calculateSubtotalPrice());
+    dispatch(calculateTotalPrice());
+  };
+
   const handleIncrementProductQuantity = () => {
     dispatch(incrementProductQuantity(product.id));
+    recalculateTotals();
   };
 
   const handleDecrementProductQuantity = () => {
     dispatch(decrementProductQuantity(product.id));
+    recalculateTotals();
   };
 
   const handleRemoveFromCart = () => {
     dispatch(removeProductFromCart(product.id));
+    recalculateTotals();
   };
 
   return (

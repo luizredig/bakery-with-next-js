@@ -6,7 +6,11 @@ import { Button } from "./ui/button";
 import { PlusIcon } from "lucide-react";
 
 import { useDispatch } from "react-redux";
-import { addProductToCart } from "@/app/redux/cartSlice";
+import {
+  addProductToCart,
+  calculateSubtotalPrice,
+  calculateTotalPrice,
+} from "@/app/redux/cartSlice";
 import { ICartItem } from "./cart-item";
 
 import { useToast } from "@/app/components/ui/use-toast";
@@ -23,6 +27,8 @@ const ProductItem = ({ product }: ProductItemProps) => {
   const handleAddToCart = () => {
     try {
       dispatch(addProductToCart({ ...product, quantity: 1 }));
+      dispatch(calculateSubtotalPrice());
+      dispatch(calculateTotalPrice());
       toast({
         title: `${product.name} has been added to your cart.`,
         description: format(new Date(), "dd/MM/yy hh:mm"),

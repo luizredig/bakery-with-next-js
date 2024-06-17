@@ -6,6 +6,8 @@ import { ICartItem } from "../components/cart-item";
 
 const initialState: ICart = {
   items: [],
+  subtotalPrice: 0,
+  totalPrice: 0,
 };
 
 export const cartSlice = createSlice({
@@ -49,6 +51,27 @@ export const cartSlice = createSlice({
     clearCart(state) {
       state.items = [];
     },
+    calculateSubtotalPrice(state) {
+      let subtotalPrice = 0;
+
+      state.items.forEach((items) => {
+        subtotalPrice += items.basePrice * items.quantity;
+      });
+
+      state.subtotalPrice = subtotalPrice;
+    },
+    calculateTotalPrice(state) {
+      let totalPrice = 0;
+
+      state.items.forEach((item) => {
+        const desconto = item.basePrice * (item.discountPercentage / 100);
+        const discountedPrice = item.basePrice - desconto;
+
+        totalPrice += discountedPrice * item.quantity;
+      });
+
+      state.totalPrice = totalPrice;
+    },
   },
 });
 
@@ -58,5 +81,7 @@ export const {
   decrementProductQuantity,
   removeProductFromCart,
   clearCart,
+  calculateSubtotalPrice,
+  calculateTotalPrice,
 } = cartSlice.actions;
 export default cartSlice.reducer;
