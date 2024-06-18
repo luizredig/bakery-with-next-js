@@ -76,7 +76,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
             height={0}
             sizes="100vw"
             priority
-            className="pointer-events-none h-full w-full object-contain"
+            className="pointer-events-none h-full min-h-[190px] w-full object-cover"
           />
 
           <div className="flex flex-col gap-1 px-3 py-5">
