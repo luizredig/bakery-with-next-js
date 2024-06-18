@@ -19,7 +19,7 @@ export async function POST(req: any) {
       basePrice,
       categoryId,
       discountPercentage,
-      imageUrls,
+      imageUrls: [imageUrls],
       name,
       slug,
     },

@@ -69,7 +69,7 @@ const formSchema = z.object({
     }, z.number().nonnegative().optional())
     .optional(),
   hasDiscountPercentage: z.boolean().optional(),
-  imagesUrls: z.string({ required_error: "Select an image" }),
+  imageUrls: z.string({ required_error: "Select an image" }),
   name: z.string({ required_error: "Name is required." }),
 });
 
@@ -85,7 +85,7 @@ const Page = () => {
     "https://utfs.io/f/6b99082b-f02a-4f6c-b145-692c43b53326-mvolo7.jpg",
   ];
 
-  const [currentImage, setCurrentImage] = useState(imageUrls[0]);
+  const [currentImage, setCurrentImage] = useState<string>(imageUrls[0]);
 
   const handleImageClick = (imageUrl: string) => {
     setCurrentImage(imageUrl);
@@ -96,17 +96,18 @@ const Page = () => {
     defaultValues: {
       discountPercentage: 0,
       hasDiscountPercentage: false,
-      imagesUrls: currentImage,
+      imageUrls: currentImage,
     },
   });
+
+  useEffect(() => {
+    form.setValue("imageUrls", currentImage);
+  }, [currentImage, form]);
 
   const [isSubmitLoading, setIsSubmitLoading] = useState(false);
 
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
     const json = JSON.stringify(data);
-
-    console.log(json);
-    return;
 
     try {
       setIsSubmitLoading(true);
@@ -174,7 +175,7 @@ const Page = () => {
           </CardHeader>
 
           <CardContent>
-            <div className="flex w-full flex-row justify-center gap-4">
+            <div className="mb-2 flex w-full flex-row justify-center gap-4">
               {imageUrls.map((url) => (
                 <button key={url} onClick={() => handleImageClick(url)}>
                   <ProductImage
@@ -226,7 +227,7 @@ const Page = () => {
                 {/* Image */}
                 <FormField
                   control={form.control}
-                  name="imagesUrls"
+                  name="imageUrls"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
