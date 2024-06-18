@@ -40,6 +40,7 @@ import { Category } from "@prisma/client";
 import { ToastAction } from "@/app/components/ui/toast";
 import { useToast } from "@/app/components/ui/use-toast";
 import { format } from "date-fns";
+import ProductImage from "@/app/components/product-image";
 
 const formSchema = z.object({
   basePrice: z.preprocess(
@@ -68,6 +69,7 @@ const formSchema = z.object({
     }, z.number().nonnegative().optional())
     .optional(),
   hasDiscountPercentage: z.boolean().optional(),
+  imagesUrls: z.string({ required_error: "Select an image" }),
   name: z.string({ required_error: "Name is required." }),
 });
 
@@ -76,11 +78,25 @@ const Page = () => {
 
   const router = useRouter();
 
+  const imageUrls = [
+    "https://utfs.io/f/9c12db82-b11a-4b59-aab7-3bdfe2e80df2-wp4fvk.webp",
+    "https://utfs.io/f/7167f4d7-3169-4948-9e2c-067dbeb8e1a1-ynhbhj.webp",
+    "https://utfs.io/f/23cc7442-f99b-4c0e-8c82-a9da08815be3-7wwmgv.webp",
+    "https://utfs.io/f/6b99082b-f02a-4f6c-b145-692c43b53326-mvolo7.jpg",
+  ];
+
+  const [currentImage, setCurrentImage] = useState(imageUrls[0]);
+
+  const handleImageClick = (imageUrl: string) => {
+    setCurrentImage(imageUrl);
+  };
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       discountPercentage: 0,
       hasDiscountPercentage: false,
+      imagesUrls: currentImage,
     },
   });
 
@@ -88,6 +104,9 @@ const Page = () => {
 
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
     const json = JSON.stringify(data);
+
+    console.log(json);
+    return;
 
     try {
       setIsSubmitLoading(true);
@@ -155,6 +174,17 @@ const Page = () => {
           </CardHeader>
 
           <CardContent>
+            <div className="flex w-full flex-row justify-center gap-4">
+              {imageUrls.map((url) => (
+                <button key={url} onClick={() => handleImageClick(url)}>
+                  <ProductImage
+                    url={url}
+                    className={`${url === currentImage ? "rounded-md border-4 border-muted-foreground" : "rounded-md"}`}
+                  />
+                </button>
+              ))}
+            </div>
+
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(handleSubmit)}
@@ -166,7 +196,7 @@ const Page = () => {
                   name="categoryId"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Categoria</FormLabel>
+                      <FormLabel>Category</FormLabel>
 
                       <Select
                         onValueChange={field.onChange}
@@ -187,6 +217,25 @@ const Page = () => {
                             ))}
                         </SelectContent>
                       </Select>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* Image */}
+                <FormField
+                  control={form.control}
+                  name="imagesUrls"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          type="hidden"
+                          onChange={field.onChange}
+                          value={currentImage}
+                        />
+                      </FormControl>
 
                       <FormMessage />
                     </FormItem>
