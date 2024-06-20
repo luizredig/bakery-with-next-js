@@ -332,7 +332,7 @@ const Page = () => {
                   />
                 )}
 
-                <Button type="submit">Enviar</Button>
+                <Button type="submit">Submit</Button>
               </form>
             </Form>
           </CardContent>
