@@ -20,9 +20,12 @@ import {
 } from "@/app/components/ui/form";
 import { Input } from "@/app/components/ui/input";
 import { Product } from "@prisma/client";
+import ProductItem from "@/app/components/product-item";
+import { Button } from "@/app/components/ui/button";
+import { SearchIcon } from "lucide-react";
 
 const formSchema = z.object({
-  text: z.string({ required_error: "Search for products" }),
+  text: z.string({ required_error: "Insert a text to search" }),
 });
 
 const Page = () => {
@@ -31,6 +34,7 @@ const Page = () => {
     defaultValues: {},
   });
 
+  const [hasUserMadeASearch, setHasUserMadeASearch] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
@@ -48,6 +52,7 @@ const Page = () => {
       const result = await response.json();
 
       setFilteredProducts(result.products);
+      setHasUserMadeASearch(true);
     } catch (error) {
       console.error("Fetch error:", error);
       return null;
@@ -75,13 +80,21 @@ const Page = () => {
                   <FormItem>
                     <FormLabel>Name</FormLabel>
 
-                    <FormControl>
-                      <Input
-                        placeholder="Search for products..."
-                        onChange={field.onChange}
-                        defaultValue={field.value}
-                      />
-                    </FormControl>
+                    <div className="flex flex-row gap-4">
+                      <FormControl>
+                        <Input
+                          placeholder="Search for products..."
+                          onChange={field.onChange}
+                          defaultValue={field.value}
+                        />
+                      </FormControl>
+
+                      <Button className="flex flex-row gap-1" type="submit">
+                        <SearchIcon />
+
+                        <p>Search</p>
+                      </Button>
+                    </div>
 
                     <FormMessage />
                   </FormItem>
@@ -89,6 +102,20 @@ const Page = () => {
               />
             </form>
           </Form>
+
+          {filteredProducts.length > 0 ? (
+            <>
+              <h1 className="mt-5 text-2xl font-semibold">Results</h1>
+
+              <div className="scrollbar mt-5 flex flex-row gap-5 overflow-x-auto">
+                {filteredProducts.map((product) => (
+                  <ProductItem key={product.id} product={product} />
+                ))}
+              </div>
+            </>
+          ) : (
+            hasUserMadeASearch && <p className="mt-5">No results was found.</p>
+          )}
         </CardContent>
       </Card>
     </>
