@@ -16,7 +16,7 @@ const initialState: CategorySliceProps = {
 };
 
 export const fetchCategories = createAsyncThunk("fetchCategories", async () => {
-  const data = await fetch("http://localhost:3000/api/find/category/all").then(
+  const data = await fetch("http://localhost:3000/api/find/category").then(
     (res) => res.json(),
   );
   return data;
