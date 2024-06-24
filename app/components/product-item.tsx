@@ -11,14 +11,14 @@ import {
   calculateSubtotalPrice,
   calculateTotalPrice,
 } from "@/app/redux/cartSlice";
-import { ICartItem } from "./cart-item";
 
 import { useToast } from "@/app/components/ui/use-toast";
 import { format } from "date-fns";
 import { Badge } from "./ui/badge";
+import { Product } from "@prisma/client";
 
 interface ProductItemProps {
-  product: ICartItem;
+  product: Product;
 }
 
 const ProductItem = ({ product }: ProductItemProps) => {
