@@ -130,7 +130,6 @@ const Page = () => {
         toast({
           title: "Product has been created",
           description: format(new Date(), "dd/MM/yy hh:mm"),
-          action: <ToastAction altText="Undo">Undo</ToastAction>,
         });
         router.push("/");
       }
