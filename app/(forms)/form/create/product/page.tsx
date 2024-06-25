@@ -37,7 +37,6 @@ import { fetchCategories } from "@/app/redux/categorySlice";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Category } from "@prisma/client";
-import { ToastAction } from "@/app/components/ui/toast";
 import { useToast } from "@/app/components/ui/use-toast";
 import { format } from "date-fns";
 import ProductImage from "@/app/components/product-image";
