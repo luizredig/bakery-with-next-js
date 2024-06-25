@@ -41,7 +41,7 @@ const Page = () => {
     const { text } = data;
 
     try {
-      const response = await fetch(`/api/find/product/${text}`, {
+      const response = await fetch(`/api/search/product/${text}`, {
         method: "GET",
       });
 
