@@ -1,6 +1,6 @@
 import { Product } from "@prisma/client";
 import { Card, CardContent } from "./ui/card";
-import { TrashIcon } from "lucide-react";
+import { PenIcon, TrashIcon } from "lucide-react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { useToast } from "./ui/use-toast";
@@ -18,6 +18,10 @@ const EditableProductItem = ({
 }: IEditableProductItemProps) => {
   const { toast } = useToast();
   const router = useRouter();
+
+  const handleUpdateProduct = async () => {
+    router.push(`/form/update/product/${product.id}`);
+  };
 
   const handleDeleteProduct = async () => {
     try {
@@ -59,6 +63,16 @@ const EditableProductItem = ({
 
           <div className="flex flex-col gap-1 px-3 py-5">
             <p className="truncate font-semibold">{product.name}</p>
+
+            {operation === "update" && (
+              <Button
+                variant={"outline"}
+                className="hover:bg-primary hover:text-white"
+                onClick={handleUpdateProduct}
+              >
+                <PenIcon />
+              </Button>
+            )}
 
             {operation === "delete" && (
               <Button
