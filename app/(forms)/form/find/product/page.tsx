@@ -66,11 +66,11 @@ const Page = () => {
           <CardTitle>Finding product</CardTitle>
         </CardHeader>
 
-        <CardContent>
+        <CardContent className="p-0">
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(handleSubmit)}
-              className="flex flex-col gap-2"
+              className="flex flex-col gap-2 p-6"
             >
               {/* Name */}
               <FormField
@@ -92,7 +92,7 @@ const Page = () => {
                       <Button className="flex flex-row gap-1" type="submit">
                         <SearchIcon />
 
-                        <p>Search</p>
+                        <p className="hidden sm:flex">Search</p>
                       </Button>
                     </div>
 
@@ -104,15 +104,15 @@ const Page = () => {
           </Form>
 
           {filteredProducts.length > 0 ? (
-            <>
-              <h1 className="mt-5 text-2xl font-semibold">Results</h1>
+            <div className="flex h-full w-full flex-col">
+              <h1 className="mt-5 px-6 text-2xl font-semibold">Results</h1>
 
-              <div className="scrollbar mt-5 flex flex-row gap-5 overflow-x-auto">
+              <div className="scrollbar flex flex-row gap-5 overflow-x-auto px-6 py-5">
                 {filteredProducts.map((product) => (
                   <ProductItem key={product.id} product={product} />
                 ))}
               </div>
-            </>
+            </div>
           ) : (
             hasUserMadeASearch && <p className="mt-5">No results was found.</p>
           )}
