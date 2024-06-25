@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 interface IEditableProductItemProps {
   product: Product;
-  operation: "update" | "delete";
+  operation: "find" | "update" | "delete";
 }
 
 const EditableProductItem = ({

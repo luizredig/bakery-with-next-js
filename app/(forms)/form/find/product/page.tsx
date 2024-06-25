@@ -20,9 +20,9 @@ import {
 } from "@/app/components/ui/form";
 import { Input } from "@/app/components/ui/input";
 import { Product } from "@prisma/client";
-import ProductItem from "@/app/components/product-item";
 import { Button } from "@/app/components/ui/button";
 import { SearchIcon } from "lucide-react";
+import EditableProductItem from "@/app/components/editable-product-item";
 
 const formSchema = z.object({
   text: z.string({ required_error: "Insert a text to search" }),
@@ -109,7 +109,11 @@ const Page = () => {
 
               <div className="scrollbar flex flex-row gap-5 overflow-x-auto px-6 py-5">
                 {filteredProducts.map((product) => (
-                  <ProductItem key={product.id} product={product} />
+                  <EditableProductItem
+                    key={product.id}
+                    product={product}
+                    operation="find"
+                  />
                 ))}
               </div>
             </div>
