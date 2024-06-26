@@ -1,4 +1,4 @@
-import BeatLoader from "./components/beat-loader";
+import BeatLoader from "@/app/components/beat-loader";
 
 const Loading = () => {
   return (
