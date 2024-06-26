@@ -8,7 +8,7 @@ interface ProductImageProps {
 const ProductImage = ({ url, className }: ProductImageProps) => {
   return (
     <>
-      <div className="h-40 w-40 cursor-pointer">
+      <div className="h-auto max-h-40 w-auto max-w-40 cursor-pointer">
         <Image
           src={url}
           alt="url"

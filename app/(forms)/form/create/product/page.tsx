@@ -81,7 +81,7 @@ const Page = () => {
     "https://utfs.io/f/9c12db82-b11a-4b59-aab7-3bdfe2e80df2-wp4fvk.webp",
     "https://utfs.io/f/7167f4d7-3169-4948-9e2c-067dbeb8e1a1-ynhbhj.webp",
     "https://utfs.io/f/23cc7442-f99b-4c0e-8c82-a9da08815be3-7wwmgv.webp",
-    "https://utfs.io/f/6b99082b-f02a-4f6c-b145-692c43b53326-mvolo7.jpg",
+    "https://utfs.io/f/d8535013-23cb-4d79-b7c2-4ca8920637fc-mvolo7.webp",
   ];
 
   const [currentImage, setCurrentImage] = useState<string>(imageUrls[0]);
