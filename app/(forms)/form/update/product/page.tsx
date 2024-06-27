@@ -70,7 +70,7 @@ const Page = () => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(handleSubmit)}
-              className="flex flex-col gap-2 p-6"
+              className="flex flex-col gap-2 p-6 pt-0"
             >
               {/* Name */}
               <FormField
