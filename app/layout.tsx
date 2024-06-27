@@ -23,10 +23,7 @@ export default function RootLayout({
   return (
     <ReduxProvider>
       <html lang="en">
-        <body
-          className={`${inter.className} flex flex-col`}
-          suppressHydrationWarning
-        >
+        <body className={`${inter.className} flex flex-col`}>
           <Header />
 
           <main className="flex-1 pt-20">{children}</main>
