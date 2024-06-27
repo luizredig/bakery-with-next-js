@@ -133,14 +133,14 @@ const Page = ({ params }: { params: { id: string } }) => {
       if (result.status === 200) {
         toast({
           title: "Product has been updated!",
-          description: format(new Date(), "dd/MM/yy hh:mm"),
+          description: format(new Date(), "dd/MM/yy HH:mm"),
         });
         router.push("/");
       }
     } catch (error) {
       toast({
         title: JSON.stringify(error),
-        description: format(new Date(), "dd/MM/yy hh:mm"),
+        description: format(new Date(), "dd/MM/yy HH:mm"),
       });
     } finally {
       setIsSubmitLoading(false);

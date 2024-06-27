@@ -32,12 +32,12 @@ const ProductItem = ({ product }: ProductItemProps) => {
       dispatch(calculateTotalPrice());
       toast({
         title: `${product.name} has been added to your cart.`,
-        description: format(new Date(), "dd/MM/yy hh:mm"),
+        description: format(new Date(), "dd/MM/yy HH:mm"),
       });
     } catch (error) {
       toast({
         title: JSON.stringify(error),
-        description: format(new Date(), "dd/MM/yy hh:mm"),
+        description: format(new Date(), "dd/MM/yy HH:mm"),
       });
     }
   };

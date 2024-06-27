@@ -38,7 +38,7 @@ const EditableProductItem = ({
       if (result.status === 200) {
         toast({
           title: "Product has been deleted!",
-          description: format(new Date(), "dd/MM/yy hh:mm"),
+          description: format(new Date(), "dd/MM/yy HH:mm"),
         });
         router.refresh();
       }
