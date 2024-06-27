@@ -36,9 +36,11 @@ const Page = () => {
 
   const [hasUserMadeASearch, setHasUserMadeASearch] = useState(false);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [searchedText, setSearchedText] = useState("");
 
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
     const { text } = data;
+    setSearchedText(text);
 
     try {
       const response = await fetch(`/api/search/product/${text}`, {
@@ -118,7 +120,12 @@ const Page = () => {
               </div>
             </div>
           ) : (
-            hasUserMadeASearch && <p className="mt-5">No results was found.</p>
+            hasUserMadeASearch && (
+              <p className="mt-5 p-6 pt-0">
+                No results found for{" "}
+                <span className="italic">"{searchedText}".</span>
+              </p>
+            )
           )}
         </CardContent>
       </Card>
