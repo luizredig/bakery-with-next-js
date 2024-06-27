@@ -5,7 +5,7 @@ import { BeatLoader as Loader } from "react-spinners";
 const BeatLoader = () => {
   return (
     <>
-      <Loader />
+      <Loader loading />
     </>
   );
 };

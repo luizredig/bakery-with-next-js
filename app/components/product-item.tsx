@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { ArrowDown, PercentIcon, PlusIcon } from "lucide-react";
@@ -16,6 +15,7 @@ import { useToast } from "@/app/components/ui/use-toast";
 import { format } from "date-fns";
 import { Badge } from "./ui/badge";
 import { Product } from "@prisma/client";
+import ImageLoader from "./image-loader";
 
 interface ProductItemProps {
   product: Product;
@@ -47,7 +47,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
       <Card className="w-48 min-w-48 max-w-48 select-none overflow-hidden rounded-2xl shadow-md">
         <CardContent className="relative p-0">
           {product.discountPercentage > 0 && (
-            <Badge className="absolute left-2 top-2 flex flex-row gap-1">
+            <Badge className="absolute left-2 top-2 z-[1] flex flex-row gap-1">
               <ArrowDown size={16} />
 
               <div className="flex flex-row">
@@ -69,14 +69,11 @@ const ProductItem = ({ product }: ProductItemProps) => {
             </div>
           </Button>
 
-          <Image
+          <ImageLoader
             src={product.imageUrls[0]}
             alt={product.name}
             width={0}
             height={0}
-            sizes="100vw"
-            priority
-            className="pointer-events-none h-full min-h-[190px] w-full object-cover"
           />
 
           <div className="flex flex-col gap-1 px-3 py-5">

@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { useToast } from "./ui/use-toast";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
+import ImageLoader from "./image-loader";
 
 interface IEditableProductItemProps {
   product: Product;
@@ -51,14 +52,11 @@ const EditableProductItem = ({
     <>
       <Card className="w-48 min-w-48 max-w-48 select-none overflow-hidden rounded-2xl shadow-md">
         <CardContent className="relative p-0">
-          <Image
+          <ImageLoader
             src={product.imageUrls[0]}
             alt={product.name}
             width={0}
             height={0}
-            sizes="100vw"
-            priority
-            className="pointer-events-none h-full min-h-[190px] w-full object-cover"
           />
 
           <div className="flex flex-col gap-1 px-3 py-5">
