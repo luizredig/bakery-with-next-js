@@ -105,9 +105,7 @@ const Page = ({ params }: { params: { id: string } }) => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      discountPercentage: 0,
-    },
+    defaultValues: {},
   });
 
   const [isSubmitLoading, setIsSubmitLoading] = useState(false);
@@ -118,8 +116,8 @@ const Page = ({ params }: { params: { id: string } }) => {
     try {
       setIsSubmitLoading(true);
 
-      const response = await fetch("/api/create/product", {
-        method: "POST",
+      const response = await fetch(`/api/update/product/${product?.id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -167,6 +165,17 @@ const Page = ({ params }: { params: { id: string } }) => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (product && categoriesState.length > 0) {
+      form.reset({
+        basePrice: product.basePrice,
+        name: product.name,
+        discountPercentage: product.discountPercentage,
+        categoryId: product.categoryId,
+      });
+    }
+  }, [product, categoriesState, form]);
+
   return (
     <>
       {isSubmitLoading ? (
@@ -174,7 +183,7 @@ const Page = ({ params }: { params: { id: string } }) => {
       ) : (
         <Card className="mx-5 my-5 sm:mx-20 lg:mx-40">
           <CardHeader>
-            <CardTitle>Creating product</CardTitle>
+            <CardTitle>Updating product</CardTitle>
           </CardHeader>
 
           <CardContent>
@@ -194,6 +203,7 @@ const Page = ({ params }: { params: { id: string } }) => {
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
+                        value={product ? product.categoryId : ""}
                       >
                         <FormControl>
                           <SelectTrigger>

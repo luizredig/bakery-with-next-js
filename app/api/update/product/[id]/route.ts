@@ -11,6 +11,10 @@ export async function PUT(
   const lowercased = name.toLowerCase();
   const slug = lowercased.replace(/\s+/g, "-");
 
+  const product = await prismaClient.product.findUnique({
+    where: { id: params.id },
+  });
+
   await prismaClient.product.update({
     where: { id: params.id },
     data: {
@@ -19,6 +23,7 @@ export async function PUT(
       discountPercentage,
       name,
       slug,
+      imageUrls: product?.imageUrls,
     },
   });
 
