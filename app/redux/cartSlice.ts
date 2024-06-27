@@ -8,6 +8,7 @@ const initialState: ICart = {
   items: [],
   subtotalPrice: 0,
   totalPrice: 0,
+  itemsCount: 0,
 };
 
 export const cartSlice = createSlice({
@@ -24,6 +25,8 @@ export const cartSlice = createSlice({
       } else {
         state.items = [...state.items, { ...action.payload, quantity: 1 }];
       }
+
+      state.itemsCount = state.items.length;
     },
     incrementProductQuantity(state, action: PayloadAction<string>) {
       const index = state.items.findIndex((item) => item.id === action.payload);
@@ -47,9 +50,12 @@ export const cartSlice = createSlice({
       if (index !== -1) {
         state.items.splice(index, 1);
       }
+
+      state.itemsCount = state.items.length;
     },
     clearCart(state) {
       state.items = [];
+      state.itemsCount = state.items.length;
     },
     calculateSubtotalPrice(state) {
       let subtotalPrice = 0;

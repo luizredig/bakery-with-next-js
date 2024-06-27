@@ -11,6 +11,7 @@ export interface ICart {
   items: ICartItem[];
   subtotalPrice: number;
   totalPrice: number;
+  itemsCount: number;
 }
 
 const Cart = () => {
