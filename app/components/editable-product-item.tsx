@@ -1,6 +1,6 @@
 import { Product } from "@prisma/client";
 import { Card, CardContent } from "./ui/card";
-import { PenIcon, TrashIcon } from "lucide-react";
+import { PencilIcon, TrashIcon } from "lucide-react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { useToast } from "./ui/use-toast";
@@ -70,7 +70,7 @@ const EditableProductItem = ({
                 className="hover:bg-primary hover:text-white"
                 onClick={handleUpdateProduct}
               >
-                <PenIcon />
+                <PencilIcon />
               </Button>
             )}
 
