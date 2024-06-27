@@ -9,9 +9,9 @@ const Menu = () => {
     <>
       <div className="flex flex-col">
         <SheetClose asChild>
-          <Link href={"/"} className="w-full">
+          <Link href={"/"} className="my-4 w-full">
             <Button className="flex w-full flex-row gap-4">
-              <HomeIcon />
+              <HomeIcon size={20} />
 
               <p>Home</p>
             </Button>
