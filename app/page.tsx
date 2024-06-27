@@ -37,7 +37,7 @@ export default async function Home() {
   });
 
   return (
-    <main>
+    <div>
       {cakes.length > 0 && <Section title="Cakes" products={cakes} />}
 
       {pies.length > 0 && <Section title="Pies" products={pies} />}
@@ -45,6 +45,6 @@ export default async function Home() {
       {cupcakes.length > 0 && <Section title="Cupcakes" products={cupcakes} />}
 
       {sweets.length > 0 && <Section title="Sweets" products={sweets} />}
-    </main>
+    </div>
   );
 }
