@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     <>
-      <Card className="flex h-20 w-full flex-row items-center justify-between rounded-none border-l-0 border-t-0 p-5 sm:px-20 lg:px-40">
+      <Card className="fixed z-10 flex h-20 w-full flex-row items-center justify-between rounded-none border-l-0 border-t-0 bg-[#ffffffdb] p-5 backdrop-blur-lg backdrop-filter sm:px-20 lg:px-40">
         <Sheet>
           <SheetTrigger asChild>
             <Button size={"icon"} variant={"ghost"}>
