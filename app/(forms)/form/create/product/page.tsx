@@ -289,7 +289,7 @@ const Page = () => {
                   name="hasDiscountPercentage"
                   render={({ field }) => (
                     <FormItem>
-                      <div className="flex flex-row items-center gap-1">
+                      <div className="flex flex-row items-center gap-1 py-2">
                         <FormControl>
                           <Checkbox
                             checked={field.value}
