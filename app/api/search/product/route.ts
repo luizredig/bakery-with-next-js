@@ -18,7 +18,7 @@ const generateSearchQuery = (
     ],
   };
 
-  if (categoryId !== "undefined" && categoryId !== "null") {
+  if (categoryId !== "undefined" && categoryId !== null) {
     searchQuery = {
       AND: [
         ...searchQuery.AND,
@@ -33,7 +33,7 @@ const generateSearchQuery = (
 
   if (
     discount !== "undefined" &&
-    discount !== "null" &&
+    discount !== null &&
     !Number.isNaN(Number(discount))
   ) {
     searchQuery = {
@@ -50,7 +50,7 @@ const generateSearchQuery = (
 
   if (
     budget !== "undefined" &&
-    budget !== "null" &&
+    budget !== null &&
     !Number.isNaN(Number(budget))
   ) {
     searchQuery = {
@@ -75,6 +75,8 @@ export async function GET(request: Request) {
   const budget = searchParams.get("budget");
   const discount = searchParams.get("discount");
   const categoryId = searchParams.get("category");
+
+  console.log({ text, budget, discount, categoryId });
 
   if (!text) {
     return new NextResponse(
