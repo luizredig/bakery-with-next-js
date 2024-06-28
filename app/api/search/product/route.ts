@@ -41,7 +41,7 @@ const generateSearchQuery = (
         ...searchQuery.AND,
         {
           discountPercentage: {
-            lte: Number(discount),
+            gte: Number(discount),
           },
         },
       ],
