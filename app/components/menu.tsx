@@ -19,8 +19,6 @@ const Menu = () => {
         </SheetClose>
 
         <MenuCollapsibleItem slug="product" icon="cake" />
-
-        <MenuCollapsibleItem slug="category" icon="clipboard" />
       </div>
     </>
   );
